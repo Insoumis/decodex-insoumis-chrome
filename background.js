@@ -119,11 +119,12 @@ function youtubeChannel(u){
 }
 
 function debunkSite(u, t, d){
+    console && console.log('debunk site ', u);
     chrome.storage.local.get(['urls', "sites", "already_visited", "infobulles", "last_update"], function(results){
         urls = results.urls;
         sites = results.sites;
-        soumis = urls.hasOwnProperty(u); // debunker
-        if(soumis == true){ // debunker
+        debunker = urls.hasOwnProperty(u);
+        if(debunker == true){
             site_id = urls[u];
             site_actif = sites[site_id][2];
             note = parseInt(sites[site_id][0]);
