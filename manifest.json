@@ -1,8 +1,13 @@
 {
   "manifest_version": 2,
-  "name": "Decodex",
+  "name": "Decodex Insoumis",
   "version": "1.1.3",
-  "description": "Avec le Décodex, évaluez en un clin d’oeil si les sites que vous consultez sont fiables.",
+  "description": "Avec le Décodex Insoumis, apprenez en un clin d’oeil qui se trouve derrière le média que vous être en train de lire !",
+  "applications": {
+      "gecko": {
+          "id": "decodex-insoumis@insoumis.online"
+      }
+  },
   "background": {
     "scripts": ["background.js", "content.js", "install.js"],
     "persistent": false
@@ -13,7 +18,7 @@
   "browser_action" :
   {
     "default_icon" : "icone.png",
-    "default_title" : "Décodex",
+    "default_title" : "Décodex Insoumis",
     "default_popup": "popup.html"
   },
     "content_scripts": [
