@@ -53,7 +53,6 @@ function bulleStore(e){
 
 
 function main() {
-
     var messages = [
         "Attention, nous n&rsquo;avons pas encore &eacute;valu&eacute; ce site, il n&rsquo;est pas ind&eacute;pendant &agrave; proprement parler ou sa soumission est trop variable pour entrer dans nos crit&egrave;res. Cela ne signifie pas que ces informations sont fausses, mais nous vous conseillons de chercher des sources suppl&eacute;mentaires, peut &ecirc;tre d&rsquo;un bord oppos&eacute; &agrave; ce site.",
         "Attention, il s'agit d'un site satirique ou parodique qui n'a pas vocation &agrave; diffuser de vraies informations. A lire au second degr&eacute;.",
@@ -65,7 +64,7 @@ function main() {
         "#A2A9AE", "#129AF0", "#D50303", "#F5A725", "#468847"
     ];
 
-    var background = chrome.extension.getBackgroundPage();
+    var background = browser.extension.getBackgroundPage();
     if(background.soumis == true) {
         document.querySelector(".content #site-name").innerText = background.site_actif;
         document.querySelector("#notule").innerText = background.notule;
