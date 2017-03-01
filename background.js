@@ -31,21 +31,19 @@
    ╙▓█Γ              █▓▄ ██▀            ▓▌ ██▀Γ             ▀█▄╦ ▀██▀
                       ╙▀                ▀`                     ▀▀
  */
-
-
-
-
-var base_url = "http://www.lemonde.fr/webservice/decodex/updates";
+var base_url = "http://decodex.insoumis.online/decodex_data.json";
 var urls = "";
 var note = null;
+var soumis = null;
 var notule = ""
 var active_url = "";
 var debunker = false;
+var soumis = false;
 var clean_url = "";
 
 chrome.runtime.onInstalled.addListener(function(details){
     if(details.reason == "install"){
-        console.log("Le Décodex est installé");
+        console && console.log("Le Décodex insoumis est installé");
         loadData();
         var last_update = new Date();
         chrome.storage.local.set(
@@ -56,9 +54,6 @@ chrome.runtime.onInstalled.addListener(function(details){
         );
         chrome.tabs.create({url: "install.html"});
     }
-    /*else if(details.reason == "update"){
-        var thisVersion = chrome.runtime.getManifest().version;
-    }*/
 });
 
 
@@ -128,20 +123,21 @@ function debunkSite(u, t, d){
     chrome.storage.local.get(['urls', "sites", "already_visited", "infobulles", "last_update"], function(results){
         urls = results.urls;
         sites = results.sites;
-        debunker = urls.hasOwnProperty(u);
-        if(debunker == true){
+        soumis = urls.hasOwnProperty(u); // debunker
+        if(soumis == true){ // debunker
             site_id = urls[u];
             site_actif = sites[site_id][2];
             note = parseInt(sites[site_id][0]);
+            soumis = parseInt(sites[site_id][5]);
             notule = sites[site_id][1];
             slug = sites[site_id][3];
             chrome.browserAction.setIcon({
                 path: "img/icones/icon" + (note) + ".png",
                 tabId: t
             });
-            if(results.infobulles[note] == true && d == true){  //
+            if(results.infobulles[soumis] == true && d == true){  // note
                 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                    chrome.tabs.sendMessage(tabs[0].id, {text: "debunker"+note}, function(response) {
+                    chrome.tabs.sendMessage(tabs[0].id, {text: "soumis"+soumis}, function(response) { // note
                     });
                 });
             }
@@ -211,7 +207,6 @@ function checkSite(do_display){
                 debunkSite(clean_url, tab.id, do_display);
             }
     });
-
 }
 
 
@@ -230,6 +225,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 chrome.windows.onFocusChanged.addListener(function (tabId, tab) {
     checkSite(false);
 });
+
 
 chrome.browserAction.onClicked.addListener(function (tabId, tab) {
     checkSite(false);

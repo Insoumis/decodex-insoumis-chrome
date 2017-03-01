@@ -66,8 +66,7 @@ function main() {
     ];
 
     var background = chrome.extension.getBackgroundPage();
-    console.log(background);
-    if(background.debunker == true) {
+    if(background.soumis == true) {
         document.querySelector(".content #site-name").innerHTML = background.site_actif;
         document.querySelector("#notule").innerHTML = background.notule;
         document.querySelector("#our-opinion").style["color"] = colors[background.note];
@@ -76,7 +75,7 @@ function main() {
         document.querySelector("#decodex-window").style.display = "block";
         document.querySelector("#verif").classList.remove("active");
         document.querySelector("#decodex-window").classList.add('active');
-        document.querySelector("#more-info").href = "http://lemonde.fr/verification/source/" + background.slug + "/?xtor=AL-33281008-[extension]";
+        document.querySelector("#more-info").href = "http://decodex.insoumis.online/about.html";
     }
     else {
         document.querySelector("#verif").style.display = "block";
