@@ -83,7 +83,7 @@
         "#D50303", // jaune
         "#129AF0", // bleu
         "#468847", // vert
-        "#468847"  // INSOUMIS AUSSI :)
+        "#468847"  // INSOUMIS AUSSI :D
     ];
 
     var class_colors = ["not-a-source", "satirical", "complotist", "dubious", "trusted", "trusted"]
