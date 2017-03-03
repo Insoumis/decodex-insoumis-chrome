@@ -34,7 +34,7 @@
 var base_url = "http://decodex.insoumis.online/decodex_data.json";
 var urls = "";
 var note = null;
-var soumis = null;
+var soumission = null;
 var notule = ""
 var active_url = "";
 var debunker = false;
@@ -145,9 +145,10 @@ function debunkSite(u, t, d){
                 path: "img/icones/icon" + (soumission) + ".png", // note
                 tabId: t
             });
-            if(results.infobulles[soumis] == true && d == true){  // note
+            if(results.infobulles[soumission] == true && d == true){  // note
+                browser.tabs.query({active: true, currentWindow: true}, function(tabs) {
                 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                    chrome.tabs.sendMessage(tabs[0].id, {text: "soumis"+soumis}, function(response) { // note
+                    chrome.tabs.sendMessage(tabs[0].id, {text: "soumission"+soumission}, function(response) { // note
                     });
                 });
             }
