@@ -292,7 +292,7 @@ function debunkSite(u, t, d){
             if (null == soumission)
                 soumission  = 0;                             // propriétaires
 
-            browser.browserAction.setIcon({
+            chrome.browserAction.setIcon({
                 path: "img/icones/icon" + (soumission) + ".png", // note
                 tabId: t
             });
@@ -313,12 +313,12 @@ function debunkSite(u, t, d){
         if(always_refresh || (today.getTime() - results.last_update)/1000/60/60 >= 1) {
 
             if (1 <= _debug) {
-                console && console.log("refresh every hour");
+                console && console.log("refresh every hour or refresh forced");
             }
             loadData();
         } else {
-            if (1 <= _debug) {
-                console && console.log("data found in cache");
+            if (2 <= _debug) {
+                console && console.log("(not refresh) use data found in cache");
             }
         }
     });
