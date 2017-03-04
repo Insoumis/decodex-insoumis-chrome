@@ -153,7 +153,7 @@ function loadData(){
 r       console && console.log('start loadData');
     chrome.storage.local.get('last_update', function(results){
         var new_update = new Date();
-        loadJSON(base_url,
+        loadJSON(base_url+"?"+new_update.getTime(),
                 function(data) {
                     if (1 <= _debug)
                         console && console.info("set urls to", data['urls']);
