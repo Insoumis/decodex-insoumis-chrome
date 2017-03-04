@@ -112,7 +112,7 @@ chrome.runtime.onInstalled.addListener(function(details){
         var last_update = new Date();
         chrome.storage.local.set(
             {
-                'infobulles': [false, true, true, true, false],
+                'infobulles': [false, true, true, true, true, true],
                 'last_update': last_update.getTime(),
             }
         );
@@ -149,8 +149,10 @@ function loadJSON(path, success, error)
 
 function loadData(){
 
-    if (1 <= _debug)
-       console && console.log('start loadData');
+    if (1 <= _debug) {
+        console && console.info('start loadData()');
+        //console && console.info('NO DEBUG');
+    }
     chrome.storage.local.get('last_update', function(results){
         var new_update = new Date();
         if (2 <= _debug) {
