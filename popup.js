@@ -71,6 +71,8 @@
                                ,:`
  */
 
+var max_notes = 6; (de 0 à 5 = 6 notes)
+
 function bulleStore(e){
     var infobulles;
     var id = parseInt(this.id.replace("check-alert", ""));
@@ -150,7 +152,7 @@ function main() {
         "inclassable", "parodique", "pas fiable du tout", "peu fiable", "fiable"
     ];
 
-    var background = browser.extension.getBackgroundPage();
+    var background = chrome.extension.getBackgroundPage();
     if(background.debunker == true) {
         // TODO afficher les infos manquantes avec popup.js et popup.html
         document.querySelector(".content #site-name").innerText = background.site_actif;
@@ -204,7 +206,7 @@ function main() {
         }
     });
     chrome.storage.local.get('infobulles', function(results){
-        for(var i=0;i<5;i++){
+        for(var i=0;i<max_notes;i++){
                 if(results.infobulles[i] == true){
                     document.getElementById("check-alert" + i).checked = true;
                 }
@@ -220,14 +222,14 @@ function main() {
         e.preventDefault();
         window.close();
     });
-    for(var i=0;i<5;i++){
+    for(var i=0;i<max_notes;i++){
         document.querySelector("#alert"+i).style.color = colors[i];
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     main();
-    for(var i=0;i<5;i++){
+    for(var i=0;i<max_notes;i++){
         document.querySelector('#check-alert'+i).addEventListener('click', bulleStore);
     }
 });
