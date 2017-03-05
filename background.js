@@ -80,15 +80,28 @@ var col_note_decodex = 0
 var col_desc         = 1
 var col_nom          = 2
 var col_slug         = 3
-var col_insoumis     = 4
-var col_proprietaire = 5
-var col_interet      = 6
-var col_exemple      = 7
-var col_subventions  = 8
-var col_pub          = 9
-var col_sources      = 10
+var col_soumission   = 4
+var col_pub          = 5
+var col_subventions  = 6
+var col_sources      = 7
 
-var base_url = "http://decodex.insoumis.online/decodex_data.json";
+var col_proprietaire1 =  8
+var col_fortune1      =  9
+var col_marque1       = 10
+var col_influence1    = 11
+
+var col_proprietaire2 = 12
+var col_fortune2      = 13
+var col_marque2       = 14
+var col_influence2    = 15
+
+var col_proprietaire3 = 16
+var col_fortune3      = 17
+var col_marque3       = 18
+var col_influence3    = 19
+
+
+var base_url = "http://decodex.insoumis.online/database.json";
 var always_refresh = false;
 var urls = "";
 var note = null;
@@ -98,6 +111,10 @@ var active_url = "";
 var debunker = false;
 var clean_url = "";
 
+var proprietaires = '';
+var fortunes      = '';
+var marques       = '';
+var influences    = '';
 var proprietaires = '';
 var interets      = '';
 var conflits      = '';
@@ -229,14 +246,33 @@ function debunkSite(u, t, d){
                 try {
                     site_actif     = sites[site_id][col_nom];                    // nom du site
                     note_decodex   = parseInt(sites[site_id][col_note_decodex]); // note decodex
-                    soumission     = parseInt(sites[site_id][col_insoumis]);     // note insoumis
+                    soumission     = parseInt(sites[site_id][col_soumission]);   // note insoumis
                     notule         = sites[site_id][col_desc];                   // description originale
                     slug           = sites[site_id][col_slug];                   // nom normalisé
-                    proprietaires  = sites[site_id][col_proprietaire];           // propriétaires
-                    interets       = sites[site_id][col_interet];                // intérets
-                    conflits       = sites[site_id][col_exemple];                // exemple de conflits / complicité idéologique
+
+                    var proprietaire1 = sites[site_id][col_proprietaire1];      // propriétaires
+                    var fortunes1      = sites[site_id][col_fortune1     ];      // propriétaires
+                    var marque1        = sites[site_id][col_marque1      ];      // propriétaires
+                    var influence1     = sites[site_id][col_influence1   ];      // propriétaires
+
+                    var proprietaire2 = sites[site_id][col_proprietaire2];      // propriétaires
+                    var fortunes2      = sites[site_id][col_fortune2     ];      // propriétaires
+                    var marque2        = sites[site_id][col_marque2      ];      // propriétaires
+                    var influence2     = sites[site_id][col_influence2   ];      // propriétaires
+
+                    var proprietaire3 = sites[site_id][col_proprietaire3];      // propriétaires
+                    var fortunes3      = sites[site_id][col_fortune3     ];      // propriétaires
+                    var marque3        = sites[site_id][col_marque3      ];      // propriétaires
+                    var influence3     = sites[site_id][col_influence3   ];      // propriétaires
+
+                    proprietaires = [proprietaire1, proprietaire2, proprietaire3];
+                    fortunes      = [fortunes1    , fortunes2    , fortunes3    ];
+                    marques       = [marque1     , marque2       , marque3      ];
+                    influences    = [influence1  , influence2    , influence3   ];
+
                     subventions    = sites[site_id][col_subventions];            // Montant des subventions d'état
                     publicite      = sites[site_id][col_pub];                    // Pub ?
+
                     sources        = sites[site_id][col_sources];                // Nos sources (urls séparés par virgule et/ou espace)
 
                     if (3 <= _debug) {
@@ -249,27 +285,27 @@ function debunkSite(u, t, d){
                     }
                     // URL toute seule (a corriger)
                     sources = sources.replace(/^(http[s]?:\/\/([^/]+)\/[^" ,]+)[^"]{1,2}$/g, '<a href="$1">$2</a><br>');
-                            if (3 <= _debug) {
-                                console && console.log("sources apres urls simples", sources);
-                            }
+                    if (3 <= _debug) {
+                    console && console.log("sources apres urls simples", sources);
+                    }
 
-                            if (2 <= _debug) {
-                                console && console.group("tout s'est bien passé");
-                                console && console.log('site_actif     =',site_actif     );
-                                console && console.log('note_decodex   =',note_decodex   );
-                                console && console.log('soumission     =',soumission     );
-                                console && console.log('notule         =',notule         );
-                                console && console.log('slug           =',slug           );
-                                console && console.log('proprietaires  =',proprietaires  );
-                                console && console.log('interets       =',interets       );
-                                console && console.log('conflits       =',conflits       );
-                                console && console.log('subventions    =',subventions    );
-                                console && console.log('sources        =',sources        );
-                                console && console.groupEnd();
+                    if (2 <= _debug) {
+                        console && console.group("tout s'est bien passé");
+                        console && console.log('site_actif     =',site_actif     );
+                        console && console.log('note_decodex   =',note_decodex   );
+                        console && console.log('soumission     =',soumission     );
+                        console && console.log('notule         =',notule         );
+                        console && console.log('slug           =',slug           );
+                        console && console.log('proprietaires  =',proprietaires  );
+                        console && console.log('interets       =',interets       );
+                        console && console.log('conflits       =',conflits       );
+                        console && console.log('subventions    =',subventions    );
+                        console && console.log('sources        =',sources        );
+                        console && console.groupEnd();
 
-                            }
-                            } catch(e) {
-                                if (1 <= _debug) {
+                        }
+                      } catch(e) {
+                        if (1 <= _debug) {
                                     console && console.error("ERREUR DEBUNKER");
                                     console && console.error(e);
                                     console && console.log(sites[site_id]);
@@ -389,6 +425,9 @@ function checkSite(do_display){
                            && key != "facebook.com"
                            && key != "twitter.com") {
                             matches.push(key);
+                            if (_debug > 4) {
+                                console && console.warn("URL MATCHES !!!!");
+                            }
                         }
                     }
                 }
