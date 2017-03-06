@@ -120,7 +120,7 @@ var interets      = '';
 var conflits      = '';
 var subventions   = '';
 var publicite     = '';
-var sources       = '';
+var sources       = [];
 
 chrome.runtime.onInstalled.addListener(function(details){
     if(details.reason == "install"){
@@ -273,18 +273,35 @@ function debunkSite(u, t, d){
                     subventions    = sites[site_id][col_subventions];            // Montant des subventions d'état
                     publicite      = sites[site_id][col_pub];                    // Pub ?
 
-                    sources        = sites[site_id][col_sources];                // Nos sources (urls séparés par virgule et/ou espace)
+                    var raw_sources = sites[site_id][col_sources];                // Nos sources (urls séparés par virgule et/ou espace)
 
                     if (3 <= _debug) {
                         console && console.info("sources avant markdown", sources);
                     }
                     // Markdown style
-                    sources = sources.replace(/\[([^\]]*?)\]\(([^\)]*?)\)[, ]{0,2}/gm, '<a class="source-link" href="$2">$1</a>');
+                    var regex = new RegExp(/\[([^\]]*?)\]\(([^\)]*?)\)[, ]{0,2}/gm);
+                    match = regex.exec(raw_sources);
+                    while (match != null) {
+                        title = match[1];
+                        url   = match[2];
+                        sources.push({"url":url, "title":title});
+                        match = regex.exec(raw_sources);
+                    }
+
                     if (3 <= _debug) {
                         console && console.log("sources apres markdown", sources);
                     }
-                    // URL toute seule (a corriger)
-                    sources = sources.replace(/^(http[s]?:\/\/([^/]+)\/[^" ,]+)[^"]{1,2}$/g, '<a href="$1">$2</a><br>');
+
+                    // URL toute seule
+                    var regex = new RegExp(/^(http[s]?:\/\/([^/]+)\/[^" ,]+)[^"]{1,2}$/g);
+                    match = regex.exec(raw_sources);
+                    while (match != null) {
+                        url   = match[1];
+                        title = match[2];
+                        sources.push({"url":url, "title":title});
+                        match = regex.exec(raw_sources);
+                    }
+
                     if (3 <= _debug) {
                     console && console.log("sources apres urls simples", sources);
                     }
@@ -311,6 +328,7 @@ function debunkSite(u, t, d){
                                     console && console.log(sites[site_id]);
                                 }
                             }
+
                 chrome.browserAction.setIcon({
                     path: "img/icones/icon" + (soumission) + ".png", // note
                     tabId: t
