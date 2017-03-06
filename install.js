@@ -85,7 +85,7 @@ function bulleStore(e){
             infobulles[id] = false;
         }
         chrome.storage.local.set({
-            'infobulles': infobulles,
+            'infobulles': infobulles
             }
         );
     });
@@ -103,34 +103,38 @@ function main(){
 
     chrome.storage.local.get('infobulles', function(results){
 
-        for(var i=0;i<6;i++){
             try {
+            for(var i=0;i<6;i++){
+                console && console.log("zzz for(var i=0) i="+i);
+                console && console.warn("checking infobulle "+i);
                 if(results.infobulles[i] == true){
+                    console && console.log("infobulle "+i+" exists");
                     document.getElementById("check-alert" + i).checked = true;
                 }
                 else {
+                    console && console.log("infobulle "+i+" does not exists");
                     document.getElementById("check-alert" + i).checked = false;
                 }
+            }
             } catch(e) {
-                console.log("error in install.js for infobulles, check-alert"+i);
-                console && console.info("error in install.js for infobulles, check-alert"+i);
+            console && console.log("error in install.js for infobulles, check-alert"+i);
                 console && console.error(e);
             }
-        }
 
     });
 }
 document.addEventListener('DOMContentLoaded', function () {
 
-    for(var i=0;i<6;i++){
+    console && console.info("on DOMContentLoaded");
+
         try {
+        for(var i=0;i<6;i++){
             var selector = document.getElementById('check-alert' + i);
             selector.addEventListener('click', bulleStore);
+        }
         } catch(e) {
             console && console.info("error in install.js for check-alert"+i);
             console && console.error(e);
-        }
-
     }
     main();
 });
