@@ -1,9 +1,8 @@
 sudo : false
 dist : trusty
+language: node_js
+node_js:
+    - "4.2.6"
 
-deploy:
-  provider: script
-  script: deploy.sh
-  on:
-    branch: master
-    tags: true
+script: deploy.sh
+
