@@ -8,25 +8,25 @@
 #fi
 
 node -c background.js
-if [[ $? ]]; then
+if [[ $? -ne 0 ]]; then
     echo "syntax error background.js"
     exit 128
 fi
 
 node -c install.js
-if [[ $? ]]; then
+if [[ $? -ne 0 ]]; then
     echo "syntax error install.js"
     exit 128
 fi
 
 node -c popup.js
-if [[ $? ]]; then
+if [[ $? -ne 0 ]]; then
     echo "syntax error popup.js"
     exit 128
 fi
 
 node -c content.js
-if [[ $? ]]; then
+if [[ $? -ne 0 ]]; then
     echo "syntax error content.js"
     exit 128
 fi
