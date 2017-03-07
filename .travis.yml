@@ -1,24 +1,9 @@
-sudo: false
-dist: trusty
-language: node_js
-node_js:
-    - "4.2.6"
+sudo : false
+dist : trusty
 
-cache: apt
-
-addons:
-  firefox: "51.0"
-
-install:
-    - npm install -g web-ext
-
-script: web-ext build
-
-before_deploy: web-ext sign --api-key ${API_KEY} --api-secret ${API_SECRET} &&  mv ./web-ext-artifacts/*.xpi extension.xpi
 deploy:
-    provider: releases
-    api_key: "${GH_TOKEN}"
-    file: "extension.xpi"
-    skip_cleanup: true
-    on:
-        tags: true
+  provider: script
+  script: deploy.sh
+  on:
+    branch: master
+    tags: true
