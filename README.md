@@ -8,23 +8,23 @@ Le decodex indique la fiabilité (selon les journalistes de Le Monde / Les
 Décodeurs) / Les Décodeurs) d'un site internet. Plus un site aura (dans le
 passé ou le présent) indiqué de fausses informations, plus celui ci aura une
 mauvaise note invitant le visiteur à vérifier les informations sur d'autres
-source.
+sources.
 
 Nous fournissons son complément essentiel : le décodex insoumis, afin de
-mettre en avant les puissances financières ou politique derrière un site que
+mettre en avant les puissances financières ou politiques derrière un site que
 vous visitez. Cela ne veut pas dire que les informations que vous y lirez sont
-fausses ou incorrecte, mais peuvent influencer la ligne éditoriale générale du
+fausses ou incorrectes, mais peuvent influencer la ligne éditoriale générale du
 site, ainsi que la présentation des informations.
 
 Attention ! Un site indépendant n'est pas forcément plus fiable qu'un site
-soumis à de grande fortune ou des capitaux financiers. Cela ne signifie pas
+soumis à de grandes fortunes ou des capitaux financiers. Cela ne signifie pas
 non plus que tous les journalistes d'un média sont forcément soumis à la
-finance, corrompu, etc… . Gardez à l'esprit que la plupart des journalistes
-ont une certaine éthique et une déontologique, et qu'un article partisant
+finance, corrompus, etc… . Gardez à l'esprit que la plupart des journalistes
+ont une certaine éthique et une déontologie, et qu'un article partisant
 n'est pas représentatif de toute la profession.
 
 Attention aussi à ne pas tomber dans les théories complotistes du «tous
-pourri» ! Si vous remarquez une information manifestement erronée ou partisane,
+pourris» ! Si vous remarquez une information manifestement erronée ou partisane,
 il est de bon ton d'appliquer <a
 href="https://fr.wikipedia.org/wiki/Rasoir_d'Hanlon">le rasoir d'Hanlon</a>
 qui invite à «Ne jamais attribuer à la malveillance ce que la stupidité ou
@@ -71,17 +71,16 @@ décodex insoumis.
 ### Remerciements
 
 * Le Monde Diplomatique,
-qui a fait germé l'idée, grâce à http://www.monde-diplomatique.fr/cartes/ppa
+qui a fait germer l'idée, grâce à http://www.monde-diplomatique.fr/cartes/ppa
 * Les Décodeurs,
-pour avoir créer leur extension «decodex», certe très simple, mais qui nous a
-servi servi de base de départ (et aussi pour leur travail de décryptage des
+pour avoir crée leur extension «decodex», certe très simple, mais qui nous a servi de base de départ (et aussi pour leur travail de décryptage des
 informations, pas si souvent biaisée que ça :) )
 
 
 Bien entendu il est impossible de citer ici tous les journalistes qui se sont
 un jour trompé dans leur article, tous les journaux qui nous ont tant de fois
 encouragé à faire un tel outil à travers leur une ou leur traitement de
-l'information. Nous leur laisson le soin de s'y reconnaitre. S'ils souhaitent
+l'information. Nous leur laissons le soin de s'y reconnaitre. S'ils souhaitent
 que l'on rajoute leur nom ou celui de leur journal aux remerciement, qu'ils
 n'hésitent pas à nous contacter.
 
